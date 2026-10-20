@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + COL_RECIPE_ID + ") REFERENCES "
                 + TABLE_RECIPES + "(" + COL_ID + ") ON DELETE CASCADE)");
 
-        // Step 3 will seed the 15-20 recipes here
+        RecipeSeeder.seed(db);
     }
 
     @Override
