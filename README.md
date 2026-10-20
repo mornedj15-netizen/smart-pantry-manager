@@ -1,0 +1,2 @@
+# smart-pantry-manager
+
