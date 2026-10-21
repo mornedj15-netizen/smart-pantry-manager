@@ -55,6 +55,9 @@ public class PantryListActivity extends AppCompatActivity implements PantryAdapt
         // Explicit Intent: open the form in "add" mode (no item id passed)
         fab.setOnClickListener(v ->
                 startActivity(new Intent(this, AddEditIngredientActivity.class)));
+
+        findViewById(R.id.btnSuggest).setOnClickListener(v ->
+                startActivity(new Intent(this, SuggestedRecipesActivity.class)));
     }
 
     /** Reload from the database every time we return to this screen. */
