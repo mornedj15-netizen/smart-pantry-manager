@@ -23,6 +23,7 @@ import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.model.PantryItem;
 import com.example.smartpantrymanager.util.NavigationHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,10 @@ public class PantryListActivity extends AppCompatActivity implements PantryAdapt
                 SettingsActivity.PREFS_NAME, Context.MODE_PRIVATE);
         adapter.setHighlightExpiring(prefs.getBoolean(SettingsActivity.KEY_EXPIRY_ALERTS, true));
         loadItems();
+
+        // The pantry screen is reused when the user comes back, so re-select its own tab
+        ((BottomNavigationView) findViewById(R.id.bottomNav))
+                .setSelectedItemId(R.id.nav_pantry);
     }
 
     private void loadItems() {

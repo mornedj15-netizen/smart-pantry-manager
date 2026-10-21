@@ -34,10 +34,12 @@ public class NavigationHelper {
                     | Intent.FLAG_ACTIVITY_SINGLE_TOP
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             activity.startActivity(intent);
+            activity.overridePendingTransition(0, 0);   // no slide when opening
 
             // The pantry screen is the "home" screen, so it stays; the others close
             if (!(activity instanceof PantryListActivity)) {
                 activity.finish();
+                activity.overridePendingTransition(0, 0);   // no slide when closing
             }
             return true;
         });
