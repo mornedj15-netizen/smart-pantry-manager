@@ -1,6 +1,8 @@
 package com.example.smartpantrymanager.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.example.smartpantrymanager.R;
 import com.example.smartpantrymanager.adapter.PantryAdapter;
 import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.model.PantryItem;
+import com.example.smartpantrymanager.util.NavigationHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -56,14 +59,16 @@ public class PantryListActivity extends AppCompatActivity implements PantryAdapt
         fab.setOnClickListener(v ->
                 startActivity(new Intent(this, AddEditIngredientActivity.class)));
 
-        findViewById(R.id.btnSuggest).setOnClickListener(v ->
-                startActivity(new Intent(this, SuggestedRecipesActivity.class)));
+        NavigationHelper.setup(this, findViewById(R.id.bottomNav), R.id.nav_pantry);
     }
 
     /** Reload from the database every time we return to this screen. */
     @Override
     protected void onResume() {
         super.onResume();
+        SharedPreferences prefs = getSharedPreferences(
+                SettingsActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        adapter.setHighlightExpiring(prefs.getBoolean(SettingsActivity.KEY_EXPIRY_ALERTS, true));
         loadItems();
     }
 

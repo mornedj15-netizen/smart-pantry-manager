@@ -17,6 +17,7 @@ import com.example.smartpantrymanager.R;
 import com.example.smartpantrymanager.adapter.RecipeAdapter;
 import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.model.Recipe;
+import com.example.smartpantrymanager.util.NavigationHelper;
 import com.example.smartpantrymanager.util.RecipeMatcher;
 
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class SuggestedRecipesActivity extends AppCompatActivity
         adapter = new RecipeAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        NavigationHelper.setup(this, findViewById(R.id.bottomNav), R.id.nav_suggested);
     }
 
     /** Re-run the matching every time the screen is shown, so it reflects the latest pantry. */
